@@ -1,0 +1,16 @@
+org_alias: Your-Org-Name
+default_pipeline: Your-Pipeline-Name
+active_story_id: US-0000
+
+guardrail_envs:
+  - UAT
+  - STAGING
+  - PROD
+
+approval_timeout_seconds: 120
+audit_log: .copado-hx/audit.log
+
+agents:
+  model: claude-sonnet-4-20250514
+  max_tokens: 2048
+  skill_file: ./SKILL.md
