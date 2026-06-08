@@ -1,5 +1,5 @@
 """
-orchestrator.py — copado-hx Agentic Orchestrator Core
+orchestrator.py - copado-hx Agentic Orchestrator Core
 
 Reads SKILL.md, matches user intent to a playbook, builds a command plan,
 executes it step-by-step, and enforces guardrails before UAT/PROD operations.
@@ -31,7 +31,7 @@ def load_skill() -> str:
 
 
 # ---------------------------------------------------------------------------
-# Session context — injected into every agent call
+# Session context - injected into every agent call
 # ---------------------------------------------------------------------------
 
 def build_session_context() -> dict:
@@ -69,7 +69,7 @@ def match_playbook(user_input: str) -> Optional[str]:
 
 
 # ---------------------------------------------------------------------------
-# Orchestrator — main entry point
+# Orchestrator - main entry point
 # ---------------------------------------------------------------------------
 
 class Orchestrator:
@@ -86,7 +86,7 @@ class Orchestrator:
         print(f"{colors.get(color, '')}{msg}{reset}")
 
     def run(self, user_input: str):
-        self.log("◈ Agentic Orchestrator — reading SKILL.md and planning workflow...", "purple")
+        self.log("◈ Agentic Orchestrator - reading SKILL.md and planning workflow...", "purple")
 
         # Load session context
         try:
@@ -175,11 +175,11 @@ Session context:
             result = client_copado.run(cmd)
             self._print_result(result)
 
-        self.log("\n✓ Workflow complete — zero browser tabs opened", "green")
+        self.log("\n✓ Workflow complete - zero browser tabs opened", "green")
 
     def _guardrail(self, cmd: str, env: str):
         """Block execution and require explicit typed approval."""
-        self.log("\n◈ Agent checkpoint — human approval required", "orange")
+        self.log("\n◈ Agent checkpoint - human approval required", "orange")
         self.log(f"  Next action: {cmd}", "dim")
         self.log(f"  Target environment: {env}", "yellow")
         ans = input("  Proceed? [yes/no]: ").strip().lower()
@@ -187,7 +187,7 @@ Session context:
             self.log("  ✗ Cancelled by user.", "red")
             raise SystemExit(0)
         self._audit(cmd, env)
-        self.log("  ✓ Approved — proceeding...", "green")
+        self.log("  ✓ Approved - proceeding...", "green")
 
     def _audit(self, cmd: str, env: str):
         AUDIT_LOG.parent.mkdir(exist_ok=True)

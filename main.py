@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-main.py — copado-hx CLI entry point
+main.py - copado-hx CLI entry point
 
 Usage:
   copado-hx "<natural language instruction>"
@@ -54,7 +54,7 @@ def main():
 
     args = sys.argv[1:]
 
-    # Natural language mode — single quoted string
+    # Natural language mode - single quoted string
     if len(args) == 1 and not args[0].startswith("-"):
         orch = Orchestrator()
         orch.run(args[0])

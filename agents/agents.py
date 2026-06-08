@@ -1,5 +1,5 @@
 """
-agents.py — copado-hx AI Agent Implementations
+agents.py - copado-hx AI Agent Implementations
 
 Each agent is a focused Claude invocation with a specific system prompt.
 Agents share session context injected by the orchestrator.
@@ -59,7 +59,7 @@ Your responsibilities:
 1. Generate CRT QWord test scripts for Salesforce Apex classes.
 2. Cover positive paths, negative paths, bulk scenarios (200 records), and governor limits.
 3. Ensure generated tests will push code coverage above the 75% threshold.
-4. Return test scenarios as a structured list: Scenario N: <name> — <description>.
+4. Return test scenarios as a structured list: Scenario N: <name> - <description>.
 
 Always include a bulk test scenario. Always include a negative/error path scenario.
 """
@@ -85,7 +85,7 @@ Your responsibilities:
 1. Perform root cause analysis on failed Copado job executions from raw error logs.
 2. Generate clean, concise release notes from commit history and story metadata.
 3. Identify breaking changes and flag them explicitly.
-4. Release notes format: bullet list — feature changes, fixes, coverage delta, breaking changes.
+4. Release notes format: bullet list - feature changes, fixes, coverage delta, breaking changes.
 """
 
 def release_agent(instruction: str, context: dict, error_log: str = "") -> str:
@@ -118,7 +118,7 @@ def security_agent(instruction: str, context: dict, code_snippet: str = "") -> s
     user = f"""
 Modified files: {context.get('modified_files', [])}
 Code to review:
-{code_snippet or '(no snippet provided — analyse based on file names)'}
+{code_snippet or '(no snippet provided - analyse based on file names)'}
 
 Instruction: {instruction}
 """
@@ -132,9 +132,9 @@ Instruction: {instruction}
 REVIEW_SYSTEM = """
 You are the copado-hx Code Review Agent.
 Review Salesforce Apex code for:
-1. Bulkification — are all DML and queries outside loops?
-2. Exception handling — are all callouts and DML wrapped?
-3. Test coverage quality — are tests asserting behaviour, not just coverage lines?
+1. Bulkification - are all DML and queries outside loops?
+2. Exception handling - are all callouts and DML wrapped?
+3. Test coverage quality - are tests asserting behaviour, not just coverage lines?
 4. Naming conventions and code clarity.
 
 Output structured review comments: FILE | LINE | TYPE | COMMENT.

@@ -11,20 +11,20 @@
 ```bash
 $ copado-hx "My lead scoring feature is ready. Run the tests and if they pass, deploy to UAT."
 
-◈ Agentic Orchestrator — reading SKILL.md and planning workflow...
+◈ Agentic Orchestrator - reading SKILL.md and planning workflow...
   Matched playbook: Full Story Delivery
   Executing 8 commands with guardrails active
 
 ❯ copado-hx auth status
-  ✓ Authenticated as vaani@varada.dev | Org: Varada-Technologies-Prod
+  ✓ Authenticated as vaani@muffin.dev | Org: muffin-Technologies-Prod
 
 ❯ copado-hx story show
-  User Story: US-2041 — Lead Scoring Engine v2
-  Pipeline: Varada Main | Branch: feature/lead-scoring-v2
+  User Story: US-2041 - Lead Scoring Engine v2
+  Pipeline: muffin Main | Branch: feature/lead-scoring-v2
 
 ❯ copado-hx ai ask --agent build "What metadata should I commit for US-2041?"
 ◈ Build Agent →
-  Detected 3 modified components — all within story scope. Safe to commit.
+  Detected 3 modified components - all within story scope. Safe to commit.
 
 ❯ copado-hx commit --message "feat: lead scoring v2 with dynamic thresholds"
   ✓ Committed | commitId: cmt_9f3a2b1c
@@ -33,14 +33,14 @@ $ copado-hx "My lead scoring feature is ready. Run the tests and if they pass, d
 ❯ copado-hx test status --execution exec_7d4e8f2a --watch
   ✓ All 4 tests passed | Duration: 24s | Coverage: 94%
 
-◈ Agent checkpoint — human approval required
+◈ Agent checkpoint - human approval required
   All smoke tests passed. Shall I promote US-2041 to UAT? [yes/no]: yes
-  ✓ Approved — proceeding...
+  ✓ Approved - proceeding...
 
 ❯ copado-hx promote --env UAT --validate
   ✓ Validation passed | US-2041 promoted to UAT
 
-✓ Workflow complete — zero browser tabs opened
+✓ Workflow complete - zero browser tabs opened
 ```
 
 ---
@@ -68,7 +68,7 @@ copado-hx/
 
 **Mandatory guardrails.** Any `promote` targeting a guardrail environment (UAT, STAGING, PROD) is blocked until the user explicitly types `yes`. All approvals are appended to `.copado-hx/audit.log` with timestamp and user.
 
-**Specialised agents.** Each agent (build, test, release, security, review) has a focused system prompt. Agents share session context injected by the orchestrator but do not share conversation history — keeping each invocation clean and deterministic.
+**Specialised agents.** Each agent (build, test, release, security, review) has a focused system prompt. Agents share session context injected by the orchestrator but do not share conversation history - keeping each invocation clean and deterministic.
 
 ---
 

@@ -1,4 +1,4 @@
-# SKILL.md — copado-hx Agentic Orchestrator
+# SKILL.md - copado-hx Agentic Orchestrator
 
 > This file is the instruction set loaded by the copado-hx agent at runtime.
 > It defines playbooks, agent roles, guardrails, and tool bindings.
@@ -9,7 +9,7 @@
 
 `copado-hx` is an open-source CLI + agentic orchestrator for Salesforce DevOps on top of Copado.
 A developer issues a **single natural language instruction**; the agent reads this SKILL.md,
-selects the matching playbook, plans a command sequence, and executes it — with mandatory
+selects the matching playbook, plans a command sequence, and executes it - with mandatory
 human-in-the-loop checkpoints before UAT/PROD operations.
 
 ---
@@ -29,46 +29,46 @@ human-in-the-loop checkpoints before UAT/PROD operations.
 
 ## Playbooks
 
-### Playbook 1 — Full Story Delivery
+### Playbook 1 - Full Story Delivery
 **Trigger phrases:** "ready to deploy", "run tests and deploy", "deliver story", "ship it"
 
 **Steps:**
-1. `auth status` — verify Copado org authentication
-2. `story show` — read active user story metadata scope
-3. `build agent` — analyse modified components vs story scope
-4. `commit` — commit in-scope components
-5. `test run` — execute smoke test suite
-6. `test status --watch` — poll until completion
+1. `auth status` - verify Copado org authentication
+2. `story show` - read active user story metadata scope
+3. `build agent` - analyse modified components vs story scope
+4. `commit` - commit in-scope components
+5. `test run` - execute smoke test suite
+6. `test status --watch` - poll until completion
 7. **GUARDRAIL** → human approval required before promotion
-8. `promote --env UAT --validate` — validation-only deployment
-9. `release agent` — generate release notes, attach to story
+8. `promote --env UAT --validate` - validation-only deployment
+9. `release agent` - generate release notes, attach to story
 
 **Guardrail rule:** Step 7 is non-skippable. Agent MUST pause and surface results before proceeding.
 
 ---
 
-### Playbook 2 — Investigate Failed Deployment
+### Playbook 2 - Investigate Failed Deployment
 **Trigger phrases:** "why did it fail", "deployment failed", "fix the error", "broken pipeline"
 
 **Steps:**
 1. `auth status`
-2. `status` — surface last failed job ID, pipeline, env
-3. `release agent` — root cause analysis on job execution logs
-4. `build agent` — apply suggested fix to offending file
-5. `commit` — commit fix with descriptive message
-6. `promote --env UAT --validate` — re-run validation
+2. `status` - surface last failed job ID, pipeline, env
+3. `release agent` - root cause analysis on job execution logs
+4. `build agent` - apply suggested fix to offending file
+5. `commit` - commit fix with descriptive message
+6. `promote --env UAT --validate` - re-run validation
 
 **No guardrail** on this playbook (fixing a broken build is low risk; original approval was already given).
 
 ---
 
-### Playbook 3 — Generate & Run Tests
+### Playbook 3 - Generate & Run Tests
 **Trigger phrases:** "write tests", "generate CRT", "test coverage", "add test for"
 
 **Steps:**
 1. `auth status`
-2. `story show` — identify target class and current coverage
-3. `test agent` — generate QWord CRT script with scenarios
+2. `story show` - identify target class and current coverage
+3. `test agent` - generate QWord CRT script with scenarios
 4. **GUARDRAIL** → human approval before test execution
 5. `test run --suite <generated>`
 6. `test status --watch`
@@ -143,8 +143,8 @@ without the developer needing to repeat themselves.
 Default config lives at `.copado-hx/config.yml`:
 
 ```yaml
-org_alias: Varada-Technologies-Prod
-default_pipeline: Varada Main
+org_alias: muffin-Technologies-Prod
+default_pipeline: muffin Main
 guardrail_envs:
   - UAT
   - STAGING
@@ -162,6 +162,6 @@ agents:
 ## Extension Points
 
 New playbooks can be added to this file. The orchestrator re-reads SKILL.md on every session start,
-so no code changes are required — playbook updates are purely declarative.
+so no code changes are required - playbook updates are purely declarative.
 
 Custom agents can be registered under `agents/` and referenced in the agent roster above.

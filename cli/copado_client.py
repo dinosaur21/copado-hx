@@ -1,5 +1,5 @@
 """
-copado_client.py — Copado REST API wrapper
+copado_client.py - Copado REST API wrapper
 
 Wraps the Copado v1 REST API for:
 - User Story metadata
@@ -175,7 +175,7 @@ class CopadoClient:
             elif verb == "status":
                 jobs = self.get_recent_jobs(limit=1)
                 last = jobs[0] if jobs else {}
-                return {"status": "success", "message": f"Last job: {last.get('id')} — {last.get('status')}", "data": last}
+                return {"status": "success", "message": f"Last job: {last.get('id')} - {last.get('status')}", "data": last}
 
             elif verb == "commit":
                 msg_idx = parts.index("--message") + 1 if "--message" in parts else -1
@@ -203,7 +203,7 @@ class CopadoClient:
                 return {"status": "error", "message": f"Unknown command verb: {verb}"}
 
         except requests.HTTPError as e:
-            return {"status": "error", "message": f"API error: {e.response.status_code} — {e.response.text}"}
+            return {"status": "error", "message": f"API error: {e.response.status_code} - {e.response.text}"}
         except Exception as e:
             return {"status": "error", "message": str(e)}
 
